@@ -31,6 +31,8 @@ import (
 	"github.com/google/blueprint/proptools"
 
 	"android/soong/android/soongconfig"
+
+	"fuse/soong/android"
 )
 
 var Bool = proptools.Bool
@@ -605,6 +607,14 @@ func (c *config) DeviceResourceOverlays() []string {
 
 func (c *config) ProductResourceOverlays() []string {
 	return c.productVariables.ProductResourceOverlays
+}
+
+func (c *config) JavaSourceOverlays() string {
+	return String(c.productVariables.Fuse.Java_Source_Overlays)
+}
+
+func (c *config) JavaSourceOverlayModuleWhitelist() []string {
+	return android.FuseConfig.JavaSourceOverlayModuleWhitelist
 }
 
 func (c *config) PlatformVersionName() string {
